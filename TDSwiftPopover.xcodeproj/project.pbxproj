@@ -14,6 +14,7 @@
 		0616A9ED22B17EFE00A78F56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0616A9EB22B17EFE00A78F56 /* LaunchScreen.storyboard */; };
 		0616A9F622B17FA000A78F56 /* TDSwiftPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0616A9F522B17FA000A78F56 /* TDSwiftPopover.swift */; };
 		0616A9F922B199A100A78F56 /* TDSwiftPopoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0616A9F822B199A100A78F56 /* TDSwiftPopoverItem.swift */; };
+		0616A9FC22B1C49000A78F56 /* TDSwiftShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0616A9FB22B1C49000A78F56 /* TDSwiftShape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0616A9EE22B17EFE00A78F56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0616A9F522B17FA000A78F56 /* TDSwiftPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftPopover.swift; sourceTree = "<group>"; };
 		0616A9F822B199A100A78F56 /* TDSwiftPopoverItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftPopoverItem.swift; sourceTree = "<group>"; };
+		0616A9FB22B1C49000A78F56 /* TDSwiftShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,10 +74,19 @@
 		0616A9F422B17F7900A78F56 /* TDSwiftPopover */ = {
 			isa = PBXGroup;
 			children = (
+				0616A9FA22B1C48200A78F56 /* TDSwiftShape */,
 				0616A9F522B17FA000A78F56 /* TDSwiftPopover.swift */,
 				0616A9F822B199A100A78F56 /* TDSwiftPopoverItem.swift */,
 			);
 			path = TDSwiftPopover;
+			sourceTree = "<group>";
+		};
+		0616A9FA22B1C48200A78F56 /* TDSwiftShape */ = {
+			isa = PBXGroup;
+			children = (
+				0616A9FB22B1C49000A78F56 /* TDSwiftShape.swift */,
+			);
+			path = TDSwiftShape;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +163,7 @@
 				0616A9E522B17EFC00A78F56 /* ViewController.swift in Sources */,
 				0616A9E322B17EFC00A78F56 /* AppDelegate.swift in Sources */,
 				0616A9F922B199A100A78F56 /* TDSwiftPopoverItem.swift in Sources */,
+				0616A9FC22B1C49000A78F56 /* TDSwiftShape.swift in Sources */,
 				0616A9F622B17FA000A78F56 /* TDSwiftPopover.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

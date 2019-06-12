@@ -46,7 +46,7 @@ public class TDSwiftPopover {
     public func present(onView view: UIView, atPoint point: CGPoint) {
         // Popover frame
         let popoverFrame = getPopoverFrame(baseView: view, presentingPoint: point)
-                
+        
         // BG View
         let bgView = UIView(frame: view.frame)
         bgView.backgroundColor = .black
