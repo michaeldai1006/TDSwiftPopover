@@ -46,6 +46,15 @@ public class TDSwiftPopover {
     public func present(onView view: UIView, atPoint point: CGPoint) {
         // Popover frame
         let popoverFrame = getPopoverFrame(baseView: view, presentingPoint: point)
+                
+        // BG View
+        let bgView = UIView(frame: view.frame)
+        bgView.backgroundColor = .black
+        view.addSubview(bgView)
+        
+        // Popover view
+        let popoverView = UITableView(frame: popoverFrame)
+        bgView.addSubview(popoverView)
     }
     
     // Calculate popover frame
@@ -71,7 +80,7 @@ public class TDSwiftPopover {
         } else if (position.horizontal == .LEFT) {
             x = view.frame.width - TDSwiftPopover.defaultPopoverPadding - self.size.width
         } else if (position.horizontal == .RIGHT) {
-            x = TDSwiftPopover.defaultPopoverPadding + self.size.width
+            x = TDSwiftPopover.defaultPopoverPadding
         }
         
         // Popover frame
