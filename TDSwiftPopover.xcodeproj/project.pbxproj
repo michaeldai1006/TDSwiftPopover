@@ -12,6 +12,8 @@
 		0616A9E822B17EFC00A78F56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0616A9E622B17EFC00A78F56 /* Main.storyboard */; };
 		0616A9EA22B17EFE00A78F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0616A9E922B17EFE00A78F56 /* Assets.xcassets */; };
 		0616A9ED22B17EFE00A78F56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0616A9EB22B17EFE00A78F56 /* LaunchScreen.storyboard */; };
+		0616A9F622B17FA000A78F56 /* TDSwiftPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0616A9F522B17FA000A78F56 /* TDSwiftPopover.swift */; };
+		0616A9F922B199A100A78F56 /* TDSwiftPopoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0616A9F822B199A100A78F56 /* TDSwiftPopoverItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		0616A9E922B17EFE00A78F56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0616A9EC22B17EFE00A78F56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0616A9EE22B17EFE00A78F56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0616A9F522B17FA000A78F56 /* TDSwiftPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftPopover.swift; sourceTree = "<group>"; };
+		0616A9F822B199A100A78F56 /* TDSwiftPopoverItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftPopoverItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +58,22 @@
 		0616A9E122B17EFC00A78F56 /* TDSwiftPopover */ = {
 			isa = PBXGroup;
 			children = (
+				0616A9F422B17F7900A78F56 /* TDSwiftPopover */,
 				0616A9E222B17EFC00A78F56 /* AppDelegate.swift */,
 				0616A9E422B17EFC00A78F56 /* ViewController.swift */,
 				0616A9E622B17EFC00A78F56 /* Main.storyboard */,
 				0616A9E922B17EFE00A78F56 /* Assets.xcassets */,
 				0616A9EB22B17EFE00A78F56 /* LaunchScreen.storyboard */,
 				0616A9EE22B17EFE00A78F56 /* Info.plist */,
+			);
+			path = TDSwiftPopover;
+			sourceTree = "<group>";
+		};
+		0616A9F422B17F7900A78F56 /* TDSwiftPopover */ = {
+			isa = PBXGroup;
+			children = (
+				0616A9F522B17FA000A78F56 /* TDSwiftPopover.swift */,
+				0616A9F822B199A100A78F56 /* TDSwiftPopoverItem.swift */,
 			);
 			path = TDSwiftPopover;
 			sourceTree = "<group>";
@@ -137,6 +151,8 @@
 			files = (
 				0616A9E522B17EFC00A78F56 /* ViewController.swift in Sources */,
 				0616A9E322B17EFC00A78F56 /* AppDelegate.swift in Sources */,
+				0616A9F922B199A100A78F56 /* TDSwiftPopoverItem.swift in Sources */,
+				0616A9F622B17FA000A78F56 /* TDSwiftPopover.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
