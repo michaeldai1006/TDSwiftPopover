@@ -5,6 +5,8 @@ public struct TDSwiftPopoverConfig {
     let backgroundColor: UIColor
     let size: CGSize
     let items: [TDSwiftPopoverItem]
+    let itemTitleColor: UIColor
+    let itemTitleFont: UIFont
 }
 
 enum TDSwiftPopoverVerticalPosition {
@@ -28,19 +30,23 @@ struct TDSwiftPopoverPosition {
     let horizontal: TDSwiftPopoverHorizontalPosition
 }
 
-public class TDSwiftPopover {
+public class TDSwiftPopover: NSObject {
     // Static values
     static private let defaultPopoverPadding: CGFloat = 10.0
     static private let defaultArrowHeight: CGFloat = 10.0
     
-    private let backgroundColor: UIColor
-    private let size: CGSize
-    private let items: [TDSwiftPopoverItem]
+    let backgroundColor: UIColor
+    let size: CGSize
+    let items: [TDSwiftPopoverItem]
+    let itemTitleColor: UIColor
+    let itemTitleFont: UIFont
     
     public init(config: TDSwiftPopoverConfig) {
         self.backgroundColor = config.backgroundColor
         self.size = config.size
         self.items = config.items
+        self.itemTitleColor = config.itemTitleColor
+        self.itemTitleFont = config.itemTitleFont
     }
     
     public func present(onView view: UIView, atPoint point: CGPoint) {
@@ -49,13 +55,11 @@ public class TDSwiftPopover {
         
         // BG View
         let bgView = UIView(frame: view.frame)
-        bgView.backgroundColor = .lightGray
-        view.addSubview(bgView)
+        bgView.backgroundColor = .clear
         
         // Popover base view
         let popoverBaseView = UIView(frame: popoverFrame)
         popoverBaseView.backgroundColor = .clear
-        bgView.addSubview(popoverBaseView)
         
         // Popover arrow
         let verticalPosition = getPopoverVerticalPosition(baseView: view, presentingPoint: point)
@@ -67,8 +71,8 @@ public class TDSwiftPopover {
                                       height: 13.0,
                                       radius: 2.0,
                                       lineWidth: 0.0,
-                                      strokeColor: UIColor(red:0.06, green:0.03, blue:0.42, alpha:1.0).cgColor,
-                                      fillColor: UIColor(red:0.06, green:0.03, blue:0.42, alpha:1.0).cgColor,
+                                      strokeColor: backgroundColor.cgColor,
+                                      fillColor: backgroundColor.cgColor,
                                       rotateAngle: 0.0)
         } else if (verticalPosition == .UP) {
             TDSwiftShape.drawTriangle(onView: popoverBaseView,
@@ -77,15 +81,26 @@ public class TDSwiftPopover {
                                       height: 13.0,
                                       radius: 2.0,
                                       lineWidth: 0.0,
-                                      strokeColor: UIColor(red:0.06, green:0.03, blue:0.42, alpha:1.0).cgColor,
-                                      fillColor: UIColor(red:0.06, green:0.03, blue:0.42, alpha:1.0).cgColor,
+                                      strokeColor: backgroundColor.cgColor,
+                                      fillColor: backgroundColor.cgColor,
                                       rotateAngle: CGFloat(Double.pi))
         }
         
         // Popover view
         let popoverView = UITableView(frame: CGRect(origin: CGPoint.zero, size: popoverFrame.size))
-        popoverBaseView.addSubview(popoverView)
+        popoverView.dataSource = self
+        popoverView.delegate = self
+        popoverView.clipsToBounds = true
+        popoverView.layer.cornerRadius = 5.0
+        popoverView.backgroundColor = backgroundColor
+        popoverView.register(UITableViewCell.self, forCellReuseIdentifier: "InfoCell")
         
+        // Stack views
+        view.addSubview(bgView)
+        bgView.addSubview(popoverBaseView)
+        popoverBaseView.addSubview(popoverView)
+
+            
         // Animate popover
         animatePopover(popoverBaseView: popoverBaseView, scalePointInBaseView: pointInBaseView)
     }
@@ -94,16 +109,15 @@ public class TDSwiftPopover {
         // Transforms
         var fromTransform = CGAffineTransform(scaleX: 0.0, y: 0.0)
         var toTransform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        
-        print("baseView.transform.a \(baseView.transform.a)")
-        
         if baseView.transform.a < 1.0 {
             fromTransform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             toTransform = CGAffineTransform(scaleX: 0.0, y: 0.0)
         }
         
         // Animate popup
+        let baseViewFrame = baseView.frame
         baseView.layer.anchorPoint = CGPoint(x: point.x / baseView.frame.width, y: point.y / baseView.frame.height)
+        baseView.frame = baseViewFrame
         baseView.transform = fromTransform
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.0, options: [.curveEaseOut, .transitionCrossDissolve], animations: {
             baseView.transform = toTransform
