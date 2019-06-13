@@ -20,6 +20,7 @@ extension TDSwiftPopover: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        delegate?.didSelect(item: items[indexPath.row], atIndex: indexPath.row)
+        animatePopover(animationType: .hide)
     }
 }

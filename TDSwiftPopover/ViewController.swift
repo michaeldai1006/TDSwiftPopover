@@ -1,11 +1,11 @@
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, TDSwiftPopoverDelegate {
     var popover: TDSwiftPopover!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,13 +26,18 @@ class ViewController: UIViewController {
                                                                    items: popoverItems,
                                                                    itemTitleColor: .white,
                                                                    itemTitleFont: UIFont.systemFont(ofSize: 12.0, weight: .medium)))
-                
+        popover.delegate = self
+        
         // Add popover show buttons
         configShowBtn(atPoint: CGPoint(x: 0.0, y: 35.0))
         configShowBtn(atPoint: CGPoint(x: 305.0, y: 35.0))
         configShowBtn(atPoint: CGPoint(x: 0.0, y: 782.0))
         configShowBtn(atPoint: CGPoint(x: 305.0, y: 782.0))
         configShowBtn(atPoint: CGPoint(x: 152.5, y: 391.0))
+    }
+    
+    func didSelect(item: TDSwiftPopoverItem, atIndex index: Int) {
+        print("Item selected with title \(item.titleText) with index \(index)")
     }
     
     private func configShowBtn(atPoint point: CGPoint) {

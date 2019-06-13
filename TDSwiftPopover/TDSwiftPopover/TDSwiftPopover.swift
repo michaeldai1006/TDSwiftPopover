@@ -35,7 +35,14 @@ struct TDSwiftPopoverPosition {
     let horizontal: TDSwiftPopoverHorizontalPosition
 }
 
+public protocol TDSwiftPopoverDelegate: class {
+    func didSelect(item: TDSwiftPopoverItem, atIndex index: Int)
+}
+
 public class TDSwiftPopover: NSObject {
+    // delegate
+    weak var delegate: TDSwiftPopoverDelegate?
+    
     // Static values
     static private let defaultPopoverPadding: CGFloat = 10.0
     static private let defaultArrowHeight: CGFloat = 10.0
@@ -123,7 +130,7 @@ public class TDSwiftPopover: NSObject {
         animatePopover(animationType: .hide)
     }
     
-    private func animatePopover(animationType type: TDSwiftPopoverAnimationType) {
+    func animatePopover(animationType type: TDSwiftPopoverAnimationType) {
         // Transforms
         var fromTransform = CGAffineTransform(scaleX: 0.0, y: 0.0)
         var toTransform = CGAffineTransform(scaleX: 1.0, y: 1.0)
