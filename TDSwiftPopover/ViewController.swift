@@ -26,9 +26,17 @@ class ViewController: UIViewController {
                                                                    items: popoverItems,
                                                                    itemTitleColor: .white,
                                                                    itemTitleFont: UIFont.systemFont(ofSize: 12.0, weight: .medium)))
-        
-        // Show button
-        let showPopoverBtn = UIButton(frame: CGRect(x: 200, y: 300, width: 70, height: 30))
+                
+        // Add popover show buttons
+        configShowBtn(atPoint: CGPoint(x: 0.0, y: 35.0))
+        configShowBtn(atPoint: CGPoint(x: 305.0, y: 35.0))
+        configShowBtn(atPoint: CGPoint(x: 0.0, y: 782.0))
+        configShowBtn(atPoint: CGPoint(x: 305.0, y: 782.0))
+        configShowBtn(atPoint: CGPoint(x: 152.5, y: 391.0))
+    }
+    
+    private func configShowBtn(atPoint point: CGPoint) {
+        let showPopoverBtn = UIButton(frame: CGRect(origin: point, size: CGSize(width: 70.0, height: 30.0)))
         showPopoverBtn.setTitle("Show", for: .normal)
         showPopoverBtn.backgroundColor = .darkGray
         showPopoverBtn.addTarget(self, action: #selector(self.showBtnClicked(sender:)), for: .touchUpInside)
