@@ -16,6 +16,7 @@
 		0616A9F922B199A100A78F56 /* TDSwiftPopoverItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0616A9F822B199A100A78F56 /* TDSwiftPopoverItem.swift */; };
 		0616A9FC22B1C49000A78F56 /* TDSwiftShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0616A9FB22B1C49000A78F56 /* TDSwiftShape.swift */; };
 		0616A9FE22B1D62A00A78F56 /* TDSwiftPopover+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0616A9FD22B1D62A00A78F56 /* TDSwiftPopover+UITableView.swift */; };
+		0616AA0122B2314D00A78F56 /* TDSwiftPopover+UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0616AA0022B2314D00A78F56 /* TDSwiftPopover+UIGestureRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		0616A9F822B199A100A78F56 /* TDSwiftPopoverItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftPopoverItem.swift; sourceTree = "<group>"; };
 		0616A9FB22B1C49000A78F56 /* TDSwiftShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftShape.swift; sourceTree = "<group>"; };
 		0616A9FD22B1D62A00A78F56 /* TDSwiftPopover+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TDSwiftPopover+UITableView.swift"; sourceTree = "<group>"; };
+		0616AA0022B2314D00A78F56 /* TDSwiftPopover+UIGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TDSwiftPopover+UIGestureRecognizer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				0616A9F522B17FA000A78F56 /* TDSwiftPopover.swift */,
 				0616A9F822B199A100A78F56 /* TDSwiftPopoverItem.swift */,
 				0616A9FD22B1D62A00A78F56 /* TDSwiftPopover+UITableView.swift */,
+				0616AA0022B2314D00A78F56 /* TDSwiftPopover+UIGestureRecognizer.swift */,
 			);
 			path = TDSwiftPopover;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0616AA0122B2314D00A78F56 /* TDSwiftPopover+UIGestureRecognizer.swift in Sources */,
 				0616A9FE22B1D62A00A78F56 /* TDSwiftPopover+UITableView.swift in Sources */,
 				0616A9E522B17EFC00A78F56 /* ViewController.swift in Sources */,
 				0616A9E322B17EFC00A78F56 /* AppDelegate.swift in Sources */,

@@ -67,7 +67,9 @@ public class TDSwiftPopover: NSObject {
         // BG View
         bgView = UIView(frame: view.frame)
         bgView.backgroundColor = .clear
-        bgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissPopover(sender:))))
+        let tapToDismissGesture = UITapGestureRecognizer(target: self, action: #selector(dismissPopover(sender:)))
+        tapToDismissGesture.delegate = self
+        bgView.addGestureRecognizer(tapToDismissGesture)
         
         // Popover base view
         popoverBaseView = UIView(frame: popoverFrame)
