@@ -19,6 +19,6 @@ class ViewController: UIViewController {
                                                                        items: popoverItems))
         
         // Present popover
-        popover.present(onView: self.view, atPoint: CGPoint(x: 300.0, y: 100.0))
+        popover.present(onView: self.view, atPoint: CGPoint(x: 300.0, y: 200.0))
     }
 }
