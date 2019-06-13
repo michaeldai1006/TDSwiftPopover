@@ -25,6 +25,11 @@ enum TDSwiftPopoverHorizontalDirection {
     case RIGHT
 }
 
+enum TDSwiftPopoverAnimationType {
+    case show
+    case hide
+}
+
 struct TDSwiftPopoverPosition {
     let vertical: TDSwiftPopoverVerticalPosition
     let horizontal: TDSwiftPopoverHorizontalPosition
@@ -35,11 +40,17 @@ public class TDSwiftPopover: NSObject {
     static private let defaultPopoverPadding: CGFloat = 10.0
     static private let defaultArrowHeight: CGFloat = 10.0
     
+    // Popover properties
     let backgroundColor: UIColor
     let size: CGSize
     let items: [TDSwiftPopoverItem]
     let itemTitleColor: UIColor
     let itemTitleFont: UIFont
+    
+    // Popover references
+    var popoverBaseView: UIView!
+    var bgView: UIView!
+    var scalePointInBaseView: CGPoint!
     
     public init(config: TDSwiftPopoverConfig) {
         self.backgroundColor = config.backgroundColor
@@ -54,16 +65,18 @@ public class TDSwiftPopover: NSObject {
         let popoverFrame = getPopoverFrame(baseView: view, presentingPoint: point)
         
         // BG View
-        let bgView = UIView(frame: view.frame)
+        bgView = UIView(frame: view.frame)
         bgView.backgroundColor = .clear
+        bgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissPopover(sender:))))
         
         // Popover base view
-        let popoverBaseView = UIView(frame: popoverFrame)
+        popoverBaseView = UIView(frame: popoverFrame)
         popoverBaseView.backgroundColor = .clear
         
         // Popover arrow
         let verticalPosition = getPopoverVerticalPosition(baseView: view, presentingPoint: point)
         let pointInBaseView = view.convert(point, to: popoverBaseView)
+        scalePointInBaseView = pointInBaseView
         if (verticalPosition == .DOWN) {
             TDSwiftShape.drawTriangle(onView: popoverBaseView,
                                       atPoint: CGPoint(x: pointInBaseView.x, y: pointInBaseView.y + 7.0),
@@ -99,30 +112,40 @@ public class TDSwiftPopover: NSObject {
         view.addSubview(bgView)
         bgView.addSubview(popoverBaseView)
         popoverBaseView.addSubview(popoverView)
-
-            
+        
         // Animate popover
-        animatePopover(popoverBaseView: popoverBaseView, scalePointInBaseView: pointInBaseView)
+        animatePopover(animationType: .show)
     }
     
-    private func animatePopover(popoverBaseView baseView: UIView, scalePointInBaseView point: CGPoint) {
+    @objc private func dismissPopover(sender: UITapGestureRecognizer) {
+        animatePopover(animationType: .hide)
+    }
+    
+    private func animatePopover(animationType type: TDSwiftPopoverAnimationType) {
         // Transforms
         var fromTransform = CGAffineTransform(scaleX: 0.0, y: 0.0)
         var toTransform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        if baseView.transform.a < 1.0 {
+        var animationDamping: CGFloat = 0.75
+        if type == .hide {
             fromTransform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            toTransform = CGAffineTransform(scaleX: 0.0, y: 0.0)
+            toTransform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+            animationDamping = 1.0
         }
         
         // Animate popup
-        let baseViewFrame = baseView.frame
-        baseView.layer.anchorPoint = CGPoint(x: point.x / baseView.frame.width, y: point.y / baseView.frame.height)
-        baseView.frame = baseViewFrame
-        baseView.transform = fromTransform
-        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0.0, options: [.curveEaseOut, .transitionCrossDissolve], animations: {
-            baseView.transform = toTransform
+        let baseViewFrame = popoverBaseView.frame
+        popoverBaseView.layer.anchorPoint = CGPoint(x: scalePointInBaseView.x / popoverBaseView.frame.width, y: scalePointInBaseView.y / popoverBaseView.frame.height)
+        popoverBaseView.frame = baseViewFrame
+        popoverBaseView.transform = fromTransform
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: animationDamping, initialSpringVelocity: 0.0, options: [.curveEaseOut, .transitionCrossDissolve], animations: {
+            self.popoverBaseView.transform = toTransform
+        } , completion: { (result) in
+            if (type == .hide) {
+                self.bgView.removeFromSuperview()
+            }
         })
     }
+    
     
     // Calculate popover frame
     private func getPopoverFrame(baseView view: UIView, presentingPoint point: CGPoint) -> CGRect {
