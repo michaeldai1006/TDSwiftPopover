@@ -115,7 +115,8 @@ public class TDSwiftPopover: NSObject {
         popoverView.clipsToBounds = true
         popoverView.layer.cornerRadius = 5.0
         popoverView.backgroundColor = backgroundColor
-        popoverView.register(UITableViewCell.self, forCellReuseIdentifier: "InfoCell")
+        popoverView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        popoverView.tableFooterView = UIView()
         
         // Stack views
         view.addSubview(bgView)
